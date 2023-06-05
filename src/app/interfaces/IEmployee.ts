@@ -6,5 +6,5 @@ export interface IEmployee {
   jobTitle: string
   phone: number
   imageUrl: string
-  code: string
+  code: number
 }
