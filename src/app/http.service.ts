@@ -18,8 +18,8 @@ export class HttpService {
   public findById(id: number) : Observable<IEmployee> {
     return this.httpClient.get(`http://localhost:8008/api/employee/find{${id}`) as Observable<IEmployee>;
   }
-  public deleteById(id: number) {
-    return this.httpClient.delete(`http://localhost:8008/api/employee/delete?id=${id}`);
+  public deleteById(id: number): Observable<IEmployee[]> {
+    return this.httpClient.delete(`http://localhost:8008/api/employee/delete?id=${id}`) as Observable<IEmployee[]>;
   }
   public updateEmployee(input: IEmployee) : Observable<IEmployee> {
     return this.httpClient.put("http://localhost:8008/api/employee/update", input) as Observable<IEmployee>;
