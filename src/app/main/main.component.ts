@@ -22,7 +22,24 @@ export class MainComponent implements OnDestroy{
   }
   employees: IEmployee[] = [];
 
+  public onOpenModal(employee: IEmployee[] | null, mode: string) : void {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addEmployeeModal');
+    }
+    if (mode === 'delete') {
+      button.setAttribute('data-target', '#deleteEmployeeModal');
+    }
+    if (mode === 'update') {
+      button.setAttribute('data-target', '#updateEmployeeModal');
+    }
+  }
+
   ngOnDestroy() {
+    this.accountService.$employees.unsubscribe();
   }
 }
 
