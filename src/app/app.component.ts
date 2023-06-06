@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IEmployee} from "./interfaces/IEmployee";
+import {IEmployee, IEmployeePost} from "./interfaces/IEmployee";
 import {HttpService} from "./http.service";
 
 @Component({
@@ -9,8 +9,7 @@ import {HttpService} from "./http.service";
 })
 export class AppComponent {
   constructor(private httpService: HttpService) {}
-  data: IEmployee = {
-    id: -1,
+  data: IEmployeePost = {
     name: "Dinh Lor",
     email: "Dinhlor122@gmail.com",
     jobTitle: "Software Engineer",

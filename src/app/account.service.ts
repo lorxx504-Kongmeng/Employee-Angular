@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
-import {IEmployee} from "./interfaces/IEmployee";
+import {IEmployee, IEmployeePost, IEmployeeUpdate} from "./interfaces/IEmployee";
 import {BehaviorSubject} from "rxjs";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class AccountService {
   $employees = new BehaviorSubject<IEmployee[] | null>(null);
   $employee = new BehaviorSubject<IEmployee | null>(null);
 
-  public addEmployee(employee: IEmployee) {
+  public addEmployee(employee: IEmployeePost) {
     this.httpService.addEmployee(employee).subscribe({
       next: value => {
 
@@ -49,7 +48,7 @@ export class AccountService {
       }
     })
   }
-  public updateEmployee(data: IEmployee) {
+  public updateEmployee(data: IEmployeeUpdate) {
     this.httpService.updateEmployee(data).subscribe({
       next: value => {
         this.$employee.next(value);
