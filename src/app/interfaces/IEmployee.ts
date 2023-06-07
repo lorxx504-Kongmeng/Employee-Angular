@@ -10,7 +10,6 @@ export interface IEmployee {
 
 export interface IEmployeeUpdate {
   id: number
-  password: string
   name: string
   email: string
   jobTitle: string
@@ -20,7 +19,6 @@ export interface IEmployeeUpdate {
 }
 export interface IEmployeePost {
   name: string
-  password: string
   email: string
   jobTitle: string
   phone: number

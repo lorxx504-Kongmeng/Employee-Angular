@@ -42,7 +42,6 @@ export class MainComponent implements OnDestroy{
   }
   addEmployeeData: IEmployeePost = {
     name: "",
-    password: "",
     email: "",
     jobTitle: "",
     phone: NaN,
@@ -65,8 +64,22 @@ export class MainComponent implements OnDestroy{
     `${environment.imageApiUrl}8.png`
   ]
   employees: IEmployee[] = [];
-  public open(content: any) {
-    console.log(content);
+  deleteEmployeeData: IEmployee = {
+    id: NaN,
+    name: "",
+    email: "",
+    jobTitle: "",
+    phone: NaN,
+    imageUrl: "",
+    code: NaN
+  }
+  public deleteEmployeeFunction() {
+    this.accountService.deleteById(this.deleteEmployeeData.id);
+  }
+  public open(content: any, i?:number) {
+    if (i != undefined) {
+      this.deleteEmployeeData = this.employees[i];
+    }
     this.index = 0;
     this.currentImage = this.images[this.index];
     this.modalService.open(content);
@@ -82,7 +95,6 @@ export class MainComponent implements OnDestroy{
   public clearAddEmployeeFunction() {
     this.addEmployeeData = {
       name: "",
-      password: "",
       email: "",
       jobTitle: "",
       phone: NaN,
@@ -109,7 +121,6 @@ export class MainComponent implements OnDestroy{
     this.$error.next("");
     this.footerDisplay = false;
   }
-
   ngOnDestroy() {
     this.accountService.$employees.unsubscribe();
     this.$error.unsubscribe();

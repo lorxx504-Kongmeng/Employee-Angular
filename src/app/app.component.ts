@@ -15,8 +15,7 @@ export class AppComponent {
     jobTitle: "Software Engineer",
     phone: 1,
     imageUrl : "HelloWorld",
-    code : 702292,
-    password: "HelloWorld!"
+    code : 702292
   }
   add() {
     this.httpService.addEmployee(this.data).subscribe({
