@@ -1,8 +1,9 @@
 import {Component, OnDestroy} from '@angular/core';
 import {AccountService} from "../account.service";
-import {IEmployee} from "../interfaces/IEmployee";
+import {IEmployee, IEmployeePost} from "../interfaces/IEmployee";
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {environment} from "../../environments/environment";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -23,8 +24,14 @@ export class MainComponent implements OnDestroy{
         console.log(err);
       }
     });
+    this.$error.subscribe({
+      next: value => {
+        this.error = value;
+      }
+    });
     this.currentImage = this.images[this.index];
   }
+
 
   onClickRight() {
     this.index += 1;
@@ -33,7 +40,18 @@ export class MainComponent implements OnDestroy{
     }
     this.currentImage = this.images[this.index];
   }
-
+  addEmployeeData: IEmployeePost = {
+    name: "",
+    password: "",
+    email: "",
+    jobTitle: "",
+    phone: NaN,
+    imageUrl: "",
+    code: NaN
+  }
+  footerDisplay: boolean = false;
+  $error = new Subject<string>();
+  error: string = "";
   index: number = 0;
   currentImage: string = "";
   images: string[] = [
@@ -47,15 +65,54 @@ export class MainComponent implements OnDestroy{
     `${environment.imageApiUrl}8.png`
   ]
   employees: IEmployee[] = [];
-
   public open(content: any) {
+    console.log(content);
     this.index = 0;
     this.currentImage = this.images[this.index];
     this.modalService.open(content);
   }
+  public addEmployeeFunction() {
+    this.addEmployeeData.imageUrl = this.currentImage;
+    this.verifyAddEmployeeFunction(this.addEmployeeData);
+    this.accountService.addEmployee(this.addEmployeeData);
+    if (this.footerDisplay === false) {
+      this.clearAddEmployeeFunction();
+    }
+  }
+  public clearAddEmployeeFunction() {
+    this.addEmployeeData = {
+      name: "",
+      password: "",
+      email: "",
+      jobTitle: "",
+      phone: NaN,
+      imageUrl: "",
+      code: NaN
+    }
+  }
+  private verifyAddEmployeeFunction(data: IEmployeePost) {
+    if (data.name ==="" || data.email ===""|| data.jobTitle==="") {
+      this.footerDisplay = true;
+      this.$error.next("Please make sure you do not anything empty, including name, email and jobTitle.");
+      return;
+    }
+    if (data.phone.toString().length < 10) {
+      this.footerDisplay = true;
+      this.$error.next("Please make sure you enter 10 digits or more for the phone fill.");
+      return;
+    }
+    if (data.code.toString().length < 6 || data.code.toString().length>6) {
+      this.footerDisplay = true;
+      this.$error.next("Please make sure you enter 6 digits only for the code fill.");
+      return;
+    }
+    this.$error.next("");
+    this.footerDisplay = false;
+  }
 
   ngOnDestroy() {
     this.accountService.$employees.unsubscribe();
+    this.$error.unsubscribe();
   }
 }
 

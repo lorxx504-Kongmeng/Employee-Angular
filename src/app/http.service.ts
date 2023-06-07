@@ -12,8 +12,8 @@ export class HttpService {
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private httpClient: HttpClient) {}
-  public addEmployee(input: IEmployeePost) : Observable<IEmployee> {
-    return this.httpClient.post(`${this.apiServerUrl}add`, input) as Observable<IEmployee>;
+  public addEmployee(input: IEmployeePost) : Observable<IEmployee[]> {
+    return this.httpClient.post(`${this.apiServerUrl}add`, input) as Observable<IEmployee[]>;
   }
   public findAll() : Observable<IEmployee[]> {
     return this.httpClient.get(`${this.apiServerUrl}all`) as Observable<IEmployee[]>;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
 import {IEmployee, IEmployeePost, IEmployeeUpdate} from "./interfaces/IEmployee";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, first, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +11,19 @@ export class AccountService {
   constructor(private httpService: HttpService) {}
   $employees = new BehaviorSubject<IEmployee[] | null>(null);
   $employee = new BehaviorSubject<IEmployee | null>(null);
+  $httpError = new Subject<string>();
 
   public addEmployee(employee: IEmployeePost) {
-    this.httpService.addEmployee(employee).subscribe({
+    this.httpService.addEmployee(employee).pipe(first()).subscribe({
       next: value => {
-
+        this.$employees.next(value);
       }, error: err => {
 
       }
     })
   }
   public findAll() {
-    this.httpService.findAll().subscribe({
+    this.httpService.findAll().pipe(first()).subscribe({
       next: value => {
         this.$employees.next(value);
       }, error: error => {
@@ -31,7 +32,7 @@ export class AccountService {
     })
   }
   public findById(id: number) {
-    this.httpService.findById(id).subscribe({
+    this.httpService.findById(id).pipe(first()).subscribe({
       next: value => {
         this.$employee.next(value);
       }, error: error => {
@@ -40,7 +41,7 @@ export class AccountService {
     })
   }
   public deleteById(id: number) {
-    this.httpService.deleteById(id).subscribe({
+    this.httpService.deleteById(id).pipe(first()).subscribe({
       next: value => {
         this.$employees.next(value);
       }, error: error => {
@@ -49,7 +50,7 @@ export class AccountService {
     })
   }
   public updateEmployee(data: IEmployeeUpdate) {
-    this.httpService.updateEmployee(data).subscribe({
+    this.httpService.updateEmployee(data).pipe(first()).subscribe({
       next: value => {
         this.$employee.next(value);
       }, error: error => {

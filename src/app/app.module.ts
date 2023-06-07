@@ -7,6 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import { MatDialogModule } from "@angular/material/dialog";
     MainComponent,
     LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatDialogModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
