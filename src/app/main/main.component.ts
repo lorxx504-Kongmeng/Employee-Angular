@@ -33,13 +33,14 @@ export class MainComponent implements OnDestroy{
   }
 
 
-  onClickRight() {
+  public onClickRight() {
     this.index += 1;
     if (this.index === 8) {
       this.index = 0;
     }
     this.currentImage = this.images[this.index];
   }
+  change: boolean = false;
   addEmployeeData: IEmployeePost = {
     name: "",
     email: "",
@@ -72,6 +73,13 @@ export class MainComponent implements OnDestroy{
     phone: NaN,
     imageUrl: "",
     code: NaN
+  }
+  onSaveProfile() {
+    this.deleteEmployeeData.imageUrl = this.currentImage;
+    this.change = false;
+  }
+  public updateEmployeeFunction() {
+    this.accountService.updateEmployee(this.deleteEmployeeData);
   }
   public deleteEmployeeFunction() {
     this.accountService.deleteById(this.deleteEmployeeData.id);
