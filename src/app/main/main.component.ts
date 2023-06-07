@@ -40,6 +40,7 @@ export class MainComponent implements OnDestroy{
     }
     this.currentImage = this.images[this.index];
   }
+
   change: boolean = false;
   addEmployeeData: IEmployeePost = {
     name: "",
