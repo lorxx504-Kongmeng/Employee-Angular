@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,13 @@ import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 
 export class LoginComponent {
-  constructor() {}
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static'
+    config.keyboard = false;
+  }
+
+  open(content: any) {
+    this.modalService.open(content);
+  }
 
 }

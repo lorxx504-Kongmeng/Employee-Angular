@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
   <div class="ms-2">
     <a  class="navbar-brand" style="color: white;">Employee Manager</a>
-    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Employee </button>
+    <button class="btn btn-primary" type="button" (click)="open(addEmployee)">Add Employee </button>
   </div>
   <div class="m-1">
     <form class="form-check-inline my-2 my-lg-0">
@@ -10,30 +10,46 @@
   </div>
 </nav>
 
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployee" (click)="onOpenModal(null,'add')">
-  Launch static backdrop modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="addEmployee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h1>Hello world</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
+<ng-template  #addEmployee let-c="open" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="mt-3">Employee Manager</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross Click')"></button>
   </div>
-</div>
+  <div class="modal-body">
+    <h1>Add Employee to Database</h1>
+    <input type="text" class="form-control mb-2" placeholder="Name" aria-label="name" >
+    <input type="text" class="form-control mb-2" placeholder="Email" aria-label="email" >
+    <input type="text" class="form-control mb-2" placeholder="Job Title" aria-label="jobTitle">
+    <input type="text" class="form-control mb-2" placeholder="Phone" aria-label="phone" >
+    <input type="text" class="form-control mb-2" placeholder="code" aria-label="code" >
+
+    <!--    <form>-->
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label">-->
+<!--          Email Address-->
+<!--        </label>-->
+<!--        <input type="email" class="form-control">-->
+<!--      </div>-->
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label">-->
+<!--          Password-->
+<!--        </label>-->
+<!--        <input type="password" class="form-control">-->
+<!--      </div>-->
+<!--      <div class="mb-3">-->
+<!--        <label class="form-label">-->
+<!--          Name-->
+<!--        </label>-->
+<!--        <input type="text" class="form-control">-->
+<!--      </div>-->
+<!--    </form>-->
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary">Add</button>
+    <button class="btn btn-danger" (click)="d('Cross Click')">Cancel</button>
+  </div>
+
+</ng-template>
 
 
 <div class="mt-2">

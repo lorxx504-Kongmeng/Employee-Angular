@@ -1,6 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {AccountService} from "../account.service";
 import {IEmployee} from "../interfaces/IEmployee";
+import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-main',
@@ -8,8 +9,10 @@ import {IEmployee} from "../interfaces/IEmployee";
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnDestroy{
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,config: NgbModalConfig, private modalService: NgbModal) {
     this.accountService.findAll();
+    config.backdrop = 'static'
+    config.keyboard = false;
     this.accountService.$employees.subscribe({
       next: value => {
         if (value!=null) {
@@ -22,20 +25,8 @@ export class MainComponent implements OnDestroy{
   }
   employees: IEmployee[] = [];
 
-  public onOpenModal(employee: IEmployee[] | null, mode: string) : void {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
-    }
-    if (mode === 'delete') {
-      button.setAttribute('data-target', '#deleteEmployeeModal');
-    }
-    if (mode === 'update') {
-      button.setAttribute('data-target', '#updateEmployeeModal');
-    }
+  public open(content: any) {
+    this.modalService.open(content);
   }
 
   ngOnDestroy() {
