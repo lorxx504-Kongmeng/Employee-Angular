@@ -15,6 +15,16 @@ export class LoginComponent {
     config.keyboard = false;
   }
 
+  lists: string[] = [
+    "Kongmeng",
+    "Dinh",
+    "Lor"
+  ];
+
+  inputValue: string = "";
+
+
+
   open(content: any) {
     this.modalService.open(content);
   }
