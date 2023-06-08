@@ -10,8 +10,23 @@ export class AccountService {
 
   constructor(private httpService: HttpService) {}
   $employees = new BehaviorSubject<IEmployee[] | null>(null);
+
   $employee = new BehaviorSubject<IEmployee | null>(null);
   $httpError = new Subject<string>();
+
+  employeeReorders: IEmployee[] = [];
+
+  public reorder() {
+    this.$employees.subscribe({
+      next: value => {
+        if (value != null) {
+          for (let i = 0; i < value.length; i++) {
+
+          }
+        }
+      }
+    })
+  }
 
   public addEmployee(employee: IEmployeePost) {
     this.httpService.addEmployee(employee).pipe(first()).subscribe({

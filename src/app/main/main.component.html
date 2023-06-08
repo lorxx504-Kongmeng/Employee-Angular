@@ -4,9 +4,9 @@
     <button class="btn btn-primary" type="button" (click)="open(addEmployee)">Add Employee </button>
   </div>
   <div class="m-1">
-    <form class="form-check-inline my-2 my-lg-0">
-      <input type="search" class="form-control" placeholder="Search employees...">
-    </form>
+<!--    <form class="form-check-inline my-2 my-lg-0">-->
+<!--      <input type="search" class="form-control" placeholder="Search employees..." [(ngModel)]="searchInput">-->
+<!--    </form>-->
   </div>
 </nav>
 
@@ -113,18 +113,17 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container">
     <div class="d-flex flex-wrap" >
-      <div *ngFor="let data of employees; let i = index">
+      <div *ngFor="let data of employees | filter: searchInput; let i = index ">
         <!-- *ngFor here -->
         <div class="col-xl-10 mt-2 p-2" >
           <div class="card m-1" style="width: 18rem; height: 19rem">
             <div class="card-body row">
-
               <div class="col-6">
                 <a href=""><img src="{{data?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
               </div>
               <div class="col-6 card-title align-self-center mb-0">
-                <h2>{{data?.name}}</h2>
-                <p class="m-0">{{data?.jobTitle}}</p>
+                <h3>{{data?.name}}</h3>
+                <p class="m-1">{{data?.jobTitle}}</p>
               </div>
             </div>
             <ul class="list-group list-group-flush">
