@@ -4,9 +4,9 @@
     <button class="btn btn-primary" type="button" (click)="open(addEmployee)">Add Employee </button>
   </div>
   <div class="m-1">
-    <form class="form-check-inline my-2 my-lg-0">
-      <input type="search" class="form-control" placeholder="Search employees...">
-    </form>
+<!--    <form class="form-check-inline my-2 my-lg-0">-->
+<!--      <input type="search" class="form-control" placeholder="Search employees..." [(ngModel)]="searchInput">-->
+<!--    </form>-->
   </div>
 </nav>
 
@@ -113,7 +113,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container">
     <div class="d-flex flex-wrap" >
-      <div *ngFor="let data of employees; let i = index">
+      <div *ngFor="let data of employees | filter: searchInput; let i = index ">
         <!-- *ngFor here -->
         <div class="col-xl-10 mt-2 p-2" >
           <div class="card m-1" style="width: 18rem; height: 19rem">

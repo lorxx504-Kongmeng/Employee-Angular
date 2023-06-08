@@ -32,7 +32,7 @@ export class MainComponent implements OnDestroy{
     this.currentImage = this.images[this.index];
   }
 
-
+  searchInput: string = "";
   public onClickRight() {
     this.index += 1;
     if (this.index === 8) {

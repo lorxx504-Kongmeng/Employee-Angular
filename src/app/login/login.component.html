@@ -1,7 +1,7 @@
 <div>
   <h1>Hello World!</h1>
-  <input type="email" class="form-control" [(ngModel)]="inputValue">
-  <div *ngFor="let element of lists">
+  <input type="email" class="form-control" [(ngModel)]="inputValue" autocomplete="off">
+  <div *ngFor="let element of lists | filter: inputValue">
     {{element}}
   </div>
 </div>

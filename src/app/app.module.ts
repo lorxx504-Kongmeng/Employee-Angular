@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {FormsModule} from "@angular/forms";
         BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
-        FormsModule
+        FormsModule,
+        Ng2SearchPipeModule
     ],
   providers: [],
   bootstrap: [AppComponent]
