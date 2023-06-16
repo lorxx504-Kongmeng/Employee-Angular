@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IEmployee, IEmployeePost} from "./interfaces/IEmployee";
-import {HttpService} from "./http.service";
+import {HttpService} from "./services/http.service";
 
 @Component({
   selector: 'app-root',
