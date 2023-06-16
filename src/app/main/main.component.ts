@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import {AccountService} from "../account.service";
+import {AccountService} from "../services/account.service";
 import {IEmployee, IEmployeePost} from "../interfaces/IEmployee";
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {environment} from "../../environments/environment";

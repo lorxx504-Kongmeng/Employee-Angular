@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
-import {IEmployee, IEmployeePost, IEmployeeUpdate} from "./interfaces/IEmployee";
+import {IEmployee, IEmployeePost, IEmployeeUpdate} from "../interfaces/IEmployee";
 import {BehaviorSubject, first, Subject} from "rxjs";
 
 @Injectable({
